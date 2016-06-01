@@ -10,7 +10,7 @@
            (encode "scones" "meetmebythetree")))))
 
 (deftest test-decode
-  (testing "can decode an cyrpted message given a secret keyword"
+  (testing "can decode an encrypted message given a secret keyword"
     (is (= "meetmeontuesdayeveningatseven"
            (decode "vigilance" "hmkbxebpxpmyllyrxiiqtoltfgzzv")))
     (is (= "meetmebythetree"
@@ -22,3 +22,15 @@
            (decipher "opkyfipmfmwcvqoklyhxywgeecpvhelzg" "thequickbrownfoxjumpsoveralazydog")))
     (is (= "scones"
            (decipher "hcqxqqtqljmlzhwiivgbsapaiwcenmyu" "packmyboxwithfivedozenliquorjugs")))))
+
+(deftest test-extract
+  (testing "can extract the repeated keyword"
+    (is (= "scones"
+           (extract "sconessconess")))
+    (is (= "blorg"
+         (extract "blorgb")))
+    (is (= "blorg"
+         (extract "blorgblorg")))
+    (is (= "blorg"
+         (extract "blorg")))
+  ))
