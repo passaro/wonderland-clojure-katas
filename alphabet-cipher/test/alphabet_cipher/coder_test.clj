@@ -23,14 +23,14 @@
     (is (= "scones"
            (decipher "hcqxqqtqljmlzhwiivgbsapaiwcenmyu" "packmyboxwithfivedozenliquorjugs")))))
 
-(deftest test-extract
+(deftest test-extract-keyword
   (testing "can extract the repeated keyword"
     (is (= "scones"
-           (extract "sconessconess")))
+           (extract-keyword "sconessconess")))
     (is (= "blorg"
-         (extract "blorgb")))
+         (extract-keyword "blorgb")))
     (is (= "blorg"
-         (extract "blorgblorg")))
+         (extract-keyword "blorgblorg")))
     (is (= "blorg"
-         (extract "blorg")))
+         (extract-keyword "blorg")))
   ))

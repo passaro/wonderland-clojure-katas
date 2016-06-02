@@ -1,13 +1,13 @@
 (ns alphabet-cipher.coder)
 
-(defn repeatme [n s]
-  (take n (flatten (repeat s))))
+(defn repeat-keyword [n s]
+  (take n (cycle s)))
 
-(defn extract [word]
+(defn extract-keyword [word]
   (let [length (count word)]
     (loop [i 1]
       (if (or (>= i length)
-              (= (repeatme length (take i word)) (seq word)))
+              (= (repeat-keyword length (take i word)) (seq word)))
         (apply str (take i word))
         (recur (inc i))))))
 
@@ -26,10 +26,10 @@
   (nth alphabet (.indexOf (row m) c)))
 
 (defn decipher [cipher message]
-  (extract (map decipher-char message cipher)))
+  (extract-keyword (map decipher-char message cipher)))
 
 (defn full-keyword [keyword message]
-  (apply str (repeatme (count message) keyword)))
+  (apply str (repeat-keyword (count message) keyword)))
 
 (defn encode-char [k m]
   (nth (row m) (index k)))
